@@ -6,6 +6,17 @@ import datetime
 # Create your tests here.
 
 
+def create_question(question_text, timedelta_from_now):
+	"""
+    Create a question with the given `question_text` and `timedelta_from_now`
+    """
+    time = timezone.now() + timedelta_from_now
+    question = Question(question_text=question_text, pub_date=time)
+    question.save()
+    return question
+
+
+
 class QuestionModelTests(TestCase):
     def test_was_published_recently_with_future_question(self):
         """
